@@ -1,0 +1,10 @@
+server:
+  port: 2021
+
+spring:
+  application:
+    name: servicio-items
+
+servicio-productos:
+  ribbon:
+    listOfServers: localhost:2020, localhost:2022
