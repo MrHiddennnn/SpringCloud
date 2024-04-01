@@ -1,8 +1,8 @@
-package com.formacionbdi.springbootserviciosproductos.models.service.Impl;
+package com.formacionbdi.spring.app.productos.models.service.Impl;
 
-import com.formacionbdi.springbootserviciosproductos.models.entity.Producto;
-import com.formacionbdi.springbootserviciosproductos.models.repository.ProductoRepository;
-import com.formacionbdi.springbootserviciosproductos.models.service.IProductoService;
+import com.formacionbdi.spring.app.productos.models.entity.Producto;
+import com.formacionbdi.spring.app.productos.models.repository.ProductoRepository;
+import com.formacionbdi.spring.app.productos.models.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

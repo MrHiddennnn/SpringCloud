@@ -1,8 +1,7 @@
-package com.formacionbdi.springbootserviciosproductos;
+package com.formacionbdi.spring.app.productos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class SpringbootServiciosProductosApplication {

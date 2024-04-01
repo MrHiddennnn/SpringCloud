@@ -1,10 +1,10 @@
-package com.formacionbdi.springbootserviciosproductos;
+package com.formaciondbi.spring.app.apigateway.springbootservicioapigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootServiciosProductosApplicationTests {
+class SpringbootServicioApigatewayApplicationTests {
 
 	@Test
 	void contextLoads() {

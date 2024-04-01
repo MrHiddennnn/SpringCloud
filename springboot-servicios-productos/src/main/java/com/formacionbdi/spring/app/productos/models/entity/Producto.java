@@ -1,4 +1,4 @@
-package com.formacionbdi.springbootserviciosproductos.models.entity;
+package com.formacionbdi.spring.app.productos.models.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,8 +11,6 @@ import java.util.Date;
 @Table(name = "productos")
 @Data
 public class Producto implements Serializable {
-    @Value("${server.port}")
-    private static String uwu;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
@@ -21,9 +19,7 @@ public class Producto implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
+    private Integer port;
 
-    public String getPort(){
-        return uwu;
-    }
 
 }
