@@ -29,7 +29,6 @@ public class ItemController {
     }
 
     public Item metodoAlternativo(Long id, Integer cantidad, Throwable throwable) throws Throwable {
-        System.out.println("Ahora si ando entrando aca uwu");
         Item item = new Item();
         item.setCantidad(cantidad);
 
