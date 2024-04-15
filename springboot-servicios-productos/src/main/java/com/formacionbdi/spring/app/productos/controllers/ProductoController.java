@@ -30,7 +30,7 @@ public class ProductoController {
     public Producto obtenerDetallePorId(@PathVariable("id") Long id){
         Producto producto = iProductoService.findById(id);
 //        try{
-//            Thread.sleep(2000L);
+//            Thread.sleep(1L);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
