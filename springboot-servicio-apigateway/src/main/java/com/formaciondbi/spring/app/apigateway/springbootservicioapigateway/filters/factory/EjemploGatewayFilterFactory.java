@@ -12,15 +12,15 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class GatewayFilterFactory extends AbstractGatewayFilterFactory<GatewayFilterFactory.Configuracion> {
-    public GatewayFilterFactory() {
+public class EjemploGatewayFilterFactory extends AbstractGatewayFilterFactory<EjemploGatewayFilterFactory.Configuracion> {
+    public EjemploGatewayFilterFactory() {
         super(Configuracion.class);
     }
 
     @Override
     public GatewayFilter apply(Configuracion config) {
         return (exchange, chain) -> {
-            log.info("Ejecutando pre filter factory" + config.mensaje);
+            log.info("Ejecutando pre filter factory " + config.mensaje);
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
                 Optional.ofNullable(config.cookieValor).ifPresent(cookie -> {
                     exchange.getResponse().addCookie(ResponseCookie.from("cookie", cookie).build());

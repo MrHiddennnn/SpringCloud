@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.http.MediaType;
+//import org.springframework.http.MediaType;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -29,12 +29,12 @@ public class PreFilter implements GlobalFilter, Ordered {
                 exchange.getResponse().getHeaders().add("token", token);
             });
             exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "rojo").build());
-            exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+//            exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
         }));
     }
 
     @Override
     public int getOrder() {
-        return -1;
+        return 1;
     }
 }
