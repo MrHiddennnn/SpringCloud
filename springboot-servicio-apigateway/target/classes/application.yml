@@ -21,11 +21,14 @@ spring:
               - Path=/api/items/**
           filters:
             - StripPrefix=2
-            - name: Ejemplo
-              args:
-                mensaje: Hola, este es mi mensaje personalizado
-                cookieNombre: Usuario
-                cookieValor: MateoSilva
+            - AddRequestHeader= token-request, 123456
+            - AddResponseHeader= token-response, 12345678
+            - AddRequestParameter= nombre, Mateo
+#            - name: Ejemplo
+#              args:
+#                mensaje: Hola, este es mi mensaje personalizado
+#                cookieNombre: Usuario
+#                cookieValor: MateoSilva
 server:
   port: 8090
 
