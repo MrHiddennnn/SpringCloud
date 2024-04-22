@@ -19,6 +19,11 @@ spring:
           uri: lb://servicio-items
           predicates:
               - Path=/api/items/**
+#              - Header= token
+#              - Header= Content-Type, application/json
+#              - Method= POST, GET
+#              - Query= color
+#              - Cookie= color, azul
           filters:
             - StripPrefix=2
             - AddRequestHeader= token-request, 123456
