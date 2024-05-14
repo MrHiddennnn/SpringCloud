@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -18,24 +19,24 @@ public class ProductoController {
     private IProductoService iProductoService;
     @Autowired
     private Environment env;
+
     @GetMapping("/listar")
-    public List<Producto> listar(){
-        return iProductoService.findAll().stream().map(producto ->{
+    public List<Producto> listar() {
+        return iProductoService.findAll().stream().map(producto -> {
             producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
-            //producto.setPort(port);
             return producto;
         }).collect(Collectors.toList());
     }
-    @GetMapping("/obtenerdetallesporid/{id}")
-    public Producto obtenerDetallePorId(@PathVariable("id") Long id){
-        Producto producto = iProductoService.findById(id);
-//        try{
-//            Thread.sleep(1L);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
-        return producto;
+    @GetMapping("/obtenerdetallesporid/{id}")
+    public Producto obtenerDetallePorId(@PathVariable("id") Long id) throws InterruptedException {
+        if (id.equals(10L)) {
+            throw new IllegalStateException("Producto no encontrado");
+        }
+        if (id.equals(7L)){
+            TimeUnit.SECONDS.sleep(5L);
+        }
+        return iProductoService.findById(id);
     }
 
 }

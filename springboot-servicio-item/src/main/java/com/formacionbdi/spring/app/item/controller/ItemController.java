@@ -7,6 +7,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
 @RestController
 @Slf4j
 public class ItemController {
+    @Autowired
+    private CircuitBreakerFactory circuitBreakerFactory;
     @Autowired
     private ItemService itemService;
 
@@ -25,12 +28,21 @@ public class ItemController {
     }
 
     @GetMapping("/informacionitem/{id}/cantidad/{cantidad}")
-    @CircuitBreaker(name = "miCircuito", fallbackMethod = "metodoAlternativo")
+//    @CircuitBreaker(name = "miCircuito", fallbackMethod = "metodoAlternativo")
     public Item informacionItem(@PathVariable("id") Long id, @PathVariable("cantidad") Integer cantidad) {
+        return circuitBreakerFactory.create("items").run(() -> itemService.findById(id, cantidad)
+                , e -> metodoAlternativo(id, cantidad, e)
+        );
+    }
+
+    @CircuitBreaker(name = "items", fallbackMethod = "metodoAlternativo")
+    @GetMapping("/informacionitemanotacion/{id}/cantidad/{cantidad}")
+    public Item informacionItemAnotacion(@PathVariable("id") Long id, @PathVariable("cantidad") Integer cantidad) {
         return itemService.findById(id, cantidad);
     }
 
-    public Item metodoAlternativo(Long id, Integer cantidad, Throwable throwable) throws Throwable {
+    public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
+        log.info("El error es: ", e);
         Item item = new Item();
         item.setCantidad(cantidad);
 
