@@ -9,6 +9,11 @@ spring:
           predicates:
             - Path=/api/productos/**
           filters:
+              - name: CircuitBreaker
+                args:
+                  name: productos
+                  statusCodes: 500
+                  fallbackUri: forward:/api/items/informacionitem3/2/cantidad/5
               - StripPrefix=2
               - name: Ejemplo
                 args:
@@ -41,3 +46,24 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      productos:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 2s
+    instances:
+      productos:
+        base-config: productos
+  timelimiter:
+    configs:
+      productos:
+        timeout-duration: 2s
+    instances:
+      productos:
+        base-config: productos

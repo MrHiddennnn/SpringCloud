@@ -11,6 +11,7 @@ import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @Slf4j
@@ -35,7 +36,19 @@ public class ItemController {
         );
     }
 
+    @GetMapping("/informacionitem2/{id}/cantidad/{cantidad}")
     @CircuitBreaker(name = "items", fallbackMethod = "metodoAlternativo")
+    public Item informacionItem2(@PathVariable("id") Long id, @PathVariable("cantidad") Integer cantidad) {
+        return itemService.findById(id, cantidad);
+    }
+
+    @CircuitBreaker(name = "items", fallbackMethod = "metodoAlternativo2")
+    @GetMapping("/informacionitem3/{id}/cantidad/{cantidad}")
+    @TimeLimiter(name = "items", fallbackMethod = "metodoAlternativo2")
+    public CompletableFuture<Item> informacionItem3(@PathVariable("id") Long id, @PathVariable("cantidad") Integer cantidad) {
+        return CompletableFuture.supplyAsync(() -> itemService.findById(id, cantidad));
+    }
+
     @GetMapping("/informacionitemanotacion/{id}/cantidad/{cantidad}")
     public Item informacionItemAnotacion(@PathVariable("id") Long id, @PathVariable("cantidad") Integer cantidad) {
         return itemService.findById(id, cantidad);
@@ -53,5 +66,19 @@ public class ItemController {
 
         item.setProducto(producto);
         return item;
+    }
+
+    public CompletableFuture<Item> metodoAlternativo2(Long id, Integer cantidad, Throwable e) {
+        log.info("El error es: ", e);
+        Item item = new Item();
+        item.setCantidad(cantidad);
+
+        Producto producto = new Producto();
+        producto.setId(id);
+        producto.setNombre("Camara Sony");
+        producto.setPrecio(500.00);
+
+        item.setProducto(producto);
+        return CompletableFuture.supplyAsync(() -> item);
     }
 }
