@@ -2,4 +2,4 @@ server:
   port: 8005
 
 configuracion:
-  texto: Configurando entorno Desarrollo
+  texto: Configurando entorno por defecto

@@ -4,7 +4,14 @@ server:
 spring:
   application:
     name: servicio-items
-#  config:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: false
+  profiles:
+    active: dev
+
+#  config:  
 #    import: "optional:configserver:"
 
 eureka:

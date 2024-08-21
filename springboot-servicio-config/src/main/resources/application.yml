@@ -7,7 +7,7 @@ spring:
     config:
       server:
         native:
-          searchLocations: file:///media/playtech/Desarrollo/SpringCloud/config
+          searchLocations: file:///media/playtech/6CBE92F5BE92B6D4/Desarrollo/SpringCloud/config
 
 server:
   port: 8888
