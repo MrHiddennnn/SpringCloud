@@ -1,16 +1,6 @@
 server:
   port: 2021
 
-spring:
-  application:
-    name: servicio-items
-  cloud:
-    config:
-      uri: http://localhost:8888
-      fail-fast: false
-  profiles:
-    active: dev
-
 #  config:  
 #    import: "optional:configserver:"
 
