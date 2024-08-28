@@ -12,3 +12,7 @@ Apuntes Gateway:
         Abierto: El microservicio tiene fallas
         Semi-abierto: El microservicio esta a la espera de envio de peticiones para validar si pasar el microservicio a abierto o cerrado
 
+Apuntes loadbalancer:
+    En ambientes de microservicios se necesita crear una instancia de AppConfig creando un bean de resttemplate con la anotacion @LoadBalancer
+    si no se hace esta instancia entonces los microservicios no se podran comunicar por medio de nombres se tendran que usar ip's y puertos
+    NOTA: (El bean creado tiene que tener el mismo nombre de la instancia de objeto de resttemplate si se quiere obtener las configuraciones).

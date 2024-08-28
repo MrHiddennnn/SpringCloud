@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
 @RefreshScope
 @RestController
 @Slf4j
@@ -72,7 +73,7 @@ public class ItemController {
 
         Producto producto = new Producto();
         producto.setId(id);
-        producto.setNombre("Camara Sony");
+        producto.setNombre("Controlador de errores");
         producto.setPrecio(500.00);
 
         item.setProducto(producto);
@@ -86,7 +87,7 @@ public class ItemController {
 
         Producto producto = new Producto();
         producto.setId(id);
-        producto.setNombre("Camara Sony");
+        producto.setNombre("Controlador de errores");
         producto.setPrecio(500.00);
 
         item.setProducto(producto);
@@ -105,5 +106,23 @@ public class ItemController {
             json.put("autor.email", env.getProperty("configuracion.autor.email"));
         }
         return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
+    }
+
+    @PostMapping("/crearproducto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto crearProducto(@RequestBody Producto producto) {
+        return itemService.guardarProducto(producto);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/editarproducto/{idproducto}")
+    public Producto editarProducto(@PathVariable("idproducto") long idProducto, @RequestBody Producto producto) {
+        return itemService.editarProducto(producto, idProducto);
+    }
+
+    @DeleteMapping("/eliminarproducto/{iditem}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarProducto(@PathVariable("iditem") long idProducto) {
+        itemService.eliminarProducto(idProducto);
     }
 }
