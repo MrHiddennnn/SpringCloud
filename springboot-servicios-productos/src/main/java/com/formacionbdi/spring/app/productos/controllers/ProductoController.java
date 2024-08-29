@@ -1,7 +1,7 @@
 package com.formacionbdi.spring.app.productos.controllers;
 
-import com.formacionbdi.spring.app.productos.models.entity.Producto;
 import com.formacionbdi.spring.app.productos.models.service.IProductoService;
+import com.formaciondbi.springboot_servicio_commons.models.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;

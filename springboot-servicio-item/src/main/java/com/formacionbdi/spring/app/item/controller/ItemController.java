@@ -1,8 +1,8 @@
 package com.formacionbdi.spring.app.item.controller;
 
 import com.formacionbdi.spring.app.item.models.dto.Item;
-import com.formacionbdi.spring.app.item.models.dto.Producto;
 import com.formacionbdi.spring.app.item.models.service.ItemService;
+import com.formaciondbi.springboot_servicio_commons.models.entity.Producto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;

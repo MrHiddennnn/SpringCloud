@@ -1,8 +1,7 @@
-package com.formacionbdi.spring.app.productos.models.entity;
+package com.formaciondbi.springboot_servicio_commons.models.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 import java.util.Date;

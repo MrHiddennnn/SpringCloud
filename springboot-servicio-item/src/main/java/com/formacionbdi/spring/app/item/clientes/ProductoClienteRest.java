@@ -1,10 +1,7 @@
 package com.formacionbdi.spring.app.item.clientes;
 
-import com.formacionbdi.spring.app.item.models.dto.Producto;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.formaciondbi.springboot_servicio_commons.models.entity.Producto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.formacionbdi.spring.app.item.models.dto;
 
+import com.formaciondbi.springboot_servicio_commons.models.entity.Producto;
 import lombok.Data;
 
 @Data

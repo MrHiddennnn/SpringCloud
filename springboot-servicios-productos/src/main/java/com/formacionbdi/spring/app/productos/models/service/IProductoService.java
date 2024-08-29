@@ -1,6 +1,7 @@
 package com.formacionbdi.spring.app.productos.models.service;
 
-import com.formacionbdi.spring.app.productos.models.entity.Producto;
+
+import com.formaciondbi.springboot_servicio_commons.models.entity.Producto;
 
 import java.util.List;
 
