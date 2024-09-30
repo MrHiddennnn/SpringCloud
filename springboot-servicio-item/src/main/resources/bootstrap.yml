@@ -2,12 +2,14 @@ spring:
   application:
     name: servicio-items
   cloud:
-    config:
-      uri: http://localhost:8888
-      fail-fast: false
-  profiles:
-    active: dev
-
+#    config:
+#      uri: http://localhost:8888
+#      fail-fast: false
+#  profiles:
+##    DOCKER
+##    active: ${ENVIROMENT_DEV}
+##    Desarrollo
+#     active: dev
 management:
   endpoints:
     web:

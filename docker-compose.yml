@@ -1,0 +1,62 @@
+services:
+  gateway-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gateway-server
+    environment:
+      - URL_EUREKA=http://eureka-server:8761/eureka/
+    command: ["java", "-jar", "/app/proyectos/springboot-servicio-gateway-server-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "8090:8090"
+    depends_on:
+      - eureka-server
+
+  usuarios-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: usuarios-service
+    environment:
+      - URL_EUREKA=http://eureka-server:8761/eureka/
+    command: ["java", "-jar", "/app/proyectos/spring-servicios-usuarios-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "1020:1020"
+    depends_on:
+      - eureka-server
+
+  eureka-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: eureka-server
+
+    command: ["java", "-jar", "/app/proyectos/springboot-servicio-eureka-server-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "8761:8761"
+
+  productos-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: productos-service
+    environment:
+      - URL_EUREKA=http://eureka-server:8761/eureka/
+    command: ["java", "-jar", "/app/proyectos/springboot-servicios-productos-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "1010:1010"
+    depends_on:
+      - eureka-server
+
+  item-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: item-service
+    environment:
+      - URL_EUREKA=http://eureka-server:8761/eureka/
+    command: ["java", "-jar", "/app/proyectos/springboot-servicio-item-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "2021:2021"
+    depends_on:
+      - eureka-server

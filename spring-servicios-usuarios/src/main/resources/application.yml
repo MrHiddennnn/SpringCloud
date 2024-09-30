@@ -2,15 +2,17 @@ spring:
   application:
     name: servicio-usuarios
 
-server:
-  port: ${PORT:0}
+#server:
+#  port: ${PORT:0}
 
+server:
+  port: 1020
 eureka:
-  instance:
-    instance-Id:  ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#  instance:
+#    instance-Id:  ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${URL_EUREKA}
 
 logging:
   level:
